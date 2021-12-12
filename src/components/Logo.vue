@@ -1,12 +1,17 @@
 <template>
   <div>
-    <img src="../assets/fartexcup.png"/>
+    <img src="../assets/fartexcup.png" :class="{'mobile-image-size' : isMobile}"/>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Logo.vue"
+  name: "Logo.vue",
+  computed: {
+    isMobile() {
+      return this.$vuetify.breakpoint.smAndDown;
+    }
+  }
 };
 </script>
 
@@ -17,6 +22,9 @@ div {
 
   img {
     max-width: 400px;
+  }
+  .mobile-image-size {
+    width: 90%;
   }
 }
 </style>

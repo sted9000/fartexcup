@@ -13,7 +13,7 @@
 
     <div class="leaderboard">
       <h1>Leaderboard</h1>
-      <v-simple-table :dense="true" :dark="false">
+      <v-simple-table v-if="!mobileDisplay" :dense="true" :dark="false">
         <tbody>
         <tr>
           <th v-for="label in labels" :key="label"> {{ label }} </th>
@@ -28,6 +28,19 @@
           <td >{{ player.ctPin}}</td>
           <td >{{ player.lDrives}}</td>
           <td >{{ player.pointBehind}}</td>
+        </tr>
+        </tbody>
+      </v-simple-table>
+      <v-simple-table v-else :dense="true" :dark="false">
+        <tbody>
+        <tr>
+          <th v-for="label in mobileLabels" :key="label"> {{ label }} </th>
+        </tr>
+        <tr v-for="player in players" :key="player">
+          <td >{{ player.twRank}}</td>
+          <td >{{ player.name}}</td>
+          <td >{{ player.events}}</td>
+          <td >{{ player.points}}</td>
         </tr>
         </tbody>
       </v-simple-table>
@@ -54,6 +67,12 @@ export default {
         "Closest to Pin",
         "Longest Drive",
         "Points Behind",
+      ],
+      mobileLabels: [
+        "Rank",
+        "Name",
+        "Events",
+        "Points",
       ],
       players: [
         {
@@ -103,6 +122,11 @@ export default {
       ],
     };
   },
+  computed: {
+    mobileDisplay() {
+      return this.$vuetify.breakpoint.smAndDown;
+    }
+  }
 };
 </script>
 
@@ -122,7 +146,4 @@ export default {
   margin: 50px auto;
   max-width: 1000px;
 }
-
-
-
 </style>
