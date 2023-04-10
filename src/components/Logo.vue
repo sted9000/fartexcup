@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../assets/fartexcup.png" :class="{'mobile-image-size' : isMobile}"/>
+    <img src="../assets/lakeview.webp" :class="{'mobile-image-size' : isMobile}"/>
   </div>
 </template>
 
